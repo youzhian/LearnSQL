@@ -1,0 +1,42 @@
+
+-- 查询所有成绩小于60分的学生的学号和姓名
+select * from student where  not exists(select s_no from student_course where score >= 60 and s_no = student.s_no);
+-- 查询至少有一门成绩小于60分的学生
+select * from student where exists(select s_no from student_course where score < 60 and s_no = student.s_no);
+
+-- 查询所有和学号为1001的同学所学科目至少有一科相同的学生
+select * from student s where exists(select s_no from student_course sc where exists(select c_no from student_course where s_no ='1001' and sc.c_no=c_no) and s_no = s.s_no);
+
+-- 查询所有课程001的成绩比课程002的成绩小的学生的学号和名称
+select s.s_no,s.s_name from student s,student_course a,student_course b 
+where  a.c_no='001' and b.c_no='002' and a.s_no = b.s_no and a.score<b.score and a.s_no=s.s_no;
+
+-- 查询与1001号学生所修课程完全一直的学生
+select s.s_no,s.s_name from student s
+where not exists(
+		select s_no,c_no
+		from student_course a 
+		where a.s_no='1001' and not exists(
+				select b.s_no 
+				from student_course b 
+				where s.s_no = b.s_no and a.c_no=b.c_no
+		)
+);
+
+-- 查询与1001号学生所修课程完全不一样的学生
+select * from student 
+where exists(
+	select s_no 
+	from student_course a 
+	where 
+	not exists(
+		select c_no 
+		from student_course 
+		where s_no = '1001' and a.c_no = c_no
+	) and student.s_no = s_no
+);
+-- 查询至少一科成绩小于60分的学生
+select * from student where exists(select s_no from student_course where s_no= student.s_no and score<60);
+-- 查询平均分低于60分的学生
+select s.s_no,s.s_name,avg(sc.score) from student s,student_course sc where s.s_no=sc.s_no GROUP BY s.s_no HAVING avg(sc.score) < 60;
+
