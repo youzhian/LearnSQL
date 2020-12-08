@@ -1,0 +1,117 @@
+
+#前期准备
+#建表语句
+SET NAMES utf8mb4;
+
+-- ----------------------------
+-- Table structure for student
+-- ----------------------------
+DROP TABLE IF EXISTS `student`;
+CREATE TABLE `student`  (
+  `id` bigint(22) NOT NULL AUTO_INCREMENT COMMENT '物理主键',
+  `s_no` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '学号',
+  `s_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '姓名',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of student
+-- ----------------------------
+INSERT INTO `student` VALUES (1, '1001', '张晓明');
+INSERT INTO `student` VALUES (2, '1002', '王万里');
+INSERT INTO `student` VALUES (3, '1003', '李小丽');
+INSERT INTO `student` VALUES (4, '1004', '钱小样');
+INSERT INTO `student` VALUES (5, '1005', '沈嘉怡');
+INSERT INTO `student` VALUES (6, '1006', '彭彭');
+INSERT INTO `student` VALUES (7, '1007', '谢长亭');
+INSERT INTO `student` VALUES (8, '1008', '韩立');
+INSERT INTO `student` VALUES (9, '1009', '陈诚');
+INSERT INTO `student` VALUES (10, '1010', '王建国');
+
+-- ----------------------------
+-- Table structure for course
+-- ----------------------------
+DROP TABLE IF EXISTS `course`;
+CREATE TABLE `course`  (
+  `id` bigint(22) NOT NULL AUTO_INCREMENT COMMENT '物理主键',
+  `c_no` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '课程编号',
+  `c_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '课程名称',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of course
+-- ----------------------------
+INSERT INTO `course` VALUES (1, '001', '数学');
+INSERT INTO `course` VALUES (2, '002', '语文');
+INSERT INTO `course` VALUES (3, '003', '英语');
+INSERT INTO `course` VALUES (4, '004', '物理');
+INSERT INTO `course` VALUES (5, '005', '化学');
+
+
+
+-- ----------------------------
+-- Table structure for student_course
+-- ----------------------------
+DROP TABLE IF EXISTS `student_course`;
+CREATE TABLE `student_course`  (
+  `id` bigint(22) NOT NULL AUTO_INCREMENT COMMENT '物理主键',
+  `s_no` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '学生编号',
+  `c_no` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '课程编号',
+  `score` double NOT NULL DEFAULT 0 COMMENT '学生成绩',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 51 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of student_course
+-- ----------------------------
+INSERT INTO `student_course` VALUES (1, '1001', '001', 20);
+INSERT INTO `student_course` VALUES (2, '1001', '002', 80);
+INSERT INTO `student_course` VALUES (3, '1001', '003', 64);
+INSERT INTO `student_course` VALUES (4, '1001', '004', 70);
+INSERT INTO `student_course` VALUES (5, '1002', '001', 85);
+INSERT INTO `student_course` VALUES (6, '1002', '002', 86);
+INSERT INTO `student_course` VALUES (7, '1001', '005', 46);
+INSERT INTO `student_course` VALUES (8, '1002', '003', 66);
+INSERT INTO `student_course` VALUES (9, '1002', '004', 39);
+INSERT INTO `student_course` VALUES (10, '1002', '005', 77);
+INSERT INTO `student_course` VALUES (11, '1003', '001', 90);
+INSERT INTO `student_course` VALUES (12, '1003', '002', 74);
+INSERT INTO `student_course` VALUES (13, '1003', '003', 65);
+INSERT INTO `student_course` VALUES (14, '1003', '004', 72);
+INSERT INTO `student_course` VALUES (15, '1003', '005', 100);
+INSERT INTO `student_course` VALUES (16, '1004', '001', 59);
+INSERT INTO `student_course` VALUES (17, '1004', '002', 44);
+INSERT INTO `student_course` VALUES (18, '1004', '003', 48);
+INSERT INTO `student_course` VALUES (19, '1004', '004', 52);
+INSERT INTO `student_course` VALUES (20, '1004', '005', 57);
+INSERT INTO `student_course` VALUES (21, '1005', '001', 66);
+INSERT INTO `student_course` VALUES (22, '1005', '002', 73);
+INSERT INTO `student_course` VALUES (23, '1005', '003', 79);
+INSERT INTO `student_course` VALUES (24, '1005', '004', 84);
+INSERT INTO `student_course` VALUES (25, '1005', '005', 88);
+INSERT INTO `student_course` VALUES (26, '1006', '001', 77);
+INSERT INTO `student_course` VALUES (27, '1006', '002', 71);
+INSERT INTO `student_course` VALUES (28, '1006', '003', 62);
+INSERT INTO `student_course` VALUES (29, '1006', '004', 65);
+INSERT INTO `student_course` VALUES (30, '1006', '005', 78);
+INSERT INTO `student_course` VALUES (31, '1007', '001', 60);
+INSERT INTO `student_course` VALUES (32, '1007', '002', 66);
+INSERT INTO `student_course` VALUES (33, '1007', '003', 54);
+INSERT INTO `student_course` VALUES (34, '1007', '004', 62);
+INSERT INTO `student_course` VALUES (35, '1007', '005', 89);
+INSERT INTO `student_course` VALUES (36, '1008', '001', 87);
+INSERT INTO `student_course` VALUES (37, '1008', '002', 87);
+INSERT INTO `student_course` VALUES (38, '1008', '003', 95);
+INSERT INTO `student_course` VALUES (39, '1008', '004', 65);
+INSERT INTO `student_course` VALUES (40, '1008', '005', 66);
+INSERT INTO `student_course` VALUES (41, '1009', '001', 60);
+INSERT INTO `student_course` VALUES (42, '1009', '002', 60);
+INSERT INTO `student_course` VALUES (43, '1009', '003', 55);
+INSERT INTO `student_course` VALUES (44, '1009', '004', 36);
+INSERT INTO `student_course` VALUES (45, '1009', '005', 47);
+INSERT INTO `student_course` VALUES (46, '1010', '001', 58);
+INSERT INTO `student_course` VALUES (47, '1010', '002', 59);
+INSERT INTO `student_course` VALUES (48, '1010', '003', 44);
+INSERT INTO `student_course` VALUES (49, '1010', '004', 51);
+INSERT INTO `student_course` VALUES (50, '1010', '005', 27);
